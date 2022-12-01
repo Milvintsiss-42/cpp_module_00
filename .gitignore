@@ -1,0 +1,7 @@
+**/.vscode
+**/.DS_Store
+**/build
+**/*.o
+ex00/megaphone
+ex01/phonebook
+ex02/tests
