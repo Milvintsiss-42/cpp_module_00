@@ -6,16 +6,17 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/12/01 04:38:10 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/12/09 19:31:54 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= megaphone
 
+SRCS_DIR	= .
 SRCS		= megaphone.cpp
 BUILD_DIR	= build
 OBJ_DIR		= $(BUILD_DIR)/objs
-OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
 INC			= -I./
 
 CC			= c++
@@ -38,7 +39,7 @@ RM			= rm -rf
 
 all			: $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRCS_DIR)/%.cpp
 	@mkdir -p $(shell dirname $@)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
