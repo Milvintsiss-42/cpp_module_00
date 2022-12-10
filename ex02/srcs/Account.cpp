@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:33:51 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/10 22:17:06 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/10 23:05:26 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ Account::Account(int initial_deposit)
 	this->_nbDeposits = 0;
 	this->_nbWithdrawals = 0;
 	Account::_nbAccounts++;
-	makeDeposit(initial_deposit);
+	this->_amount += initial_deposit;
+	Account::_totalAmount += initial_deposit;
 }
 
 Account::~Account(void)
