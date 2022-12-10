@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 21:49:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/10 05:28:52 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:39:08 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static void promptField(std::string prompt, std::string &field)
 	while (field.length() == 0)
 	{
 		std::cout << prompt;
-		std::cin >> field;
-		if (std::cin.eof())
+		getline(std::cin, field);
+		if (std::cin.eof() || std::cin.fail())
 		{
-			std::cerr << "Force exit" << std::endl;
+			std::cerr << "\nForce exit" << std::endl;
 			exit(1);
 		}
 	}
