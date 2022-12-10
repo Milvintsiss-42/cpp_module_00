@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 21:49:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/10 20:39:08 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:48:57 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void displayLineElement(std::string element)
 		std::cout << element;
 }
 
-static void displayBookIndex(Contact contacts[8], int nbContacts)
+static void displayPhoneBook(Contact contacts[8], int nbContacts)
 {
 	int i;
 	Contact *contact;
@@ -82,8 +82,17 @@ static void displayBookIndex(Contact contacts[8], int nbContacts)
 	}
 }
 
+static bool isNumber(std::string str)
+{
+	for (size_t i = 0; i < str.length(); i++)
+		if (!isdigit(str[i]))
+			return false;
+	return true;
+}
+
 void PhoneBook::searchContact()
 {
+	std::string literal_index;
 	int index;
 	Contact *contact;
 
@@ -92,18 +101,23 @@ void PhoneBook::searchContact()
 		std::cerr << "The book is empty" << std::endl;
 		return;
 	}
-	displayBookIndex(this->_contacts, this->_nbContacts);
+	displayPhoneBook(this->_contacts, this->_nbContacts);
 	std::cout << "Index: ";
-	std::cin >> index;
-	if (std::cin.eof())
+	getline(std::cin, literal_index);
+	if (std::cin.eof() || std::cin.fail())
 	{
-		std::cout << "Force exit" << std::endl;
+		std::cout << "\nForce exit" << std::endl;
 		exit(1);
 	}
-	if (std::cin.fail() || !std::cin.good() ||
-		index < 0 || index >= this->_nbContacts)
+	if (!literal_index.length() || !isNumber(literal_index))
 	{
-		std::cout << "Invalid index" << std::endl;
+		std::cout << literal_index << ": Invalid index" << std::endl;
+		return;
+	}
+	index = std::stoi(literal_index);
+	if (index >= this->_nbContacts)
+	{
+		std::cout << "Index is not in range" << std::endl;
 		return;
 	}
 	contact = &this->_contacts[index];
