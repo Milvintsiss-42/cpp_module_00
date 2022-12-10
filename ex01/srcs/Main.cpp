@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 21:50:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/10 04:54:42 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:35:51 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void menu()
 	while (1)
 	{
 		std::cout << "Command: ";
-		std::cin >> option;
+		getline(std::cin, option);
 
 		if (option == "ADD")
 			phoneBook.addContact();
@@ -41,6 +41,11 @@ void menu()
 			phoneBook.searchContact();
 		else if (option == "EXIT" || std::cin.eof())
 			return;
+		else if (std::cin.fail())
+		{
+			std::cerr << "Error while reading input" << std::endl;
+			exit(1);
+		}
 		else
 			std::cerr << "Invalid command" << std::endl;
 	}
