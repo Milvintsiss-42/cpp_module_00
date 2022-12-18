@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:33:51 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/10 23:14:41 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/18 06:11:36 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ void Account::_displayTimestamp(void)
 {
 	char buf[20];
 
-	std::time_t t = std::time(0);
-	std::tm now = *std::localtime(&t);
-	std::strftime(buf, sizeof(buf), "[%Y%m%d_%H%M%S]", &now);
+	time_t t = time(0);
+	tm now = *localtime(&t);
+	strftime(buf, sizeof(buf), "[%Y%m%d_%H%M%S]", &now);
 	std::cout << buf << " ";
 }
