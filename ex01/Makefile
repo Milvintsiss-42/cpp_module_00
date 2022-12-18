@@ -6,11 +6,11 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/12/10 04:22:42 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/12/18 06:05:49 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= PhoneBook
+NAME		= phonebook
 
 SRCS_DIR	= srcs
 SRCS		= Main.cpp PhoneBook.cpp Contact.cpp
