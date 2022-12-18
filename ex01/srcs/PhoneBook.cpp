@@ -6,11 +6,12 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 21:49:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/10 20:48:57 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/18 06:02:00 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <stdlib.h>
 
 #include "PhoneBook.hpp"
 
@@ -70,7 +71,7 @@ static void displayPhoneBook(Contact contacts[8], int nbContacts)
 	while (i < 8 && i < nbContacts)
 	{
 		contact = &contacts[i];
-		displayLineElement(std::to_string(i));
+		std::cout << "         " << i;
 		std::cout << "|";
 		displayLineElement(contact->firstName);
 		std::cout << "|";
@@ -114,7 +115,7 @@ void PhoneBook::searchContact()
 		std::cout << literal_index << ": Invalid index" << std::endl;
 		return;
 	}
-	index = std::stoi(literal_index);
+	index = std::atoi(literal_index.c_str());
 	if (index >= this->_nbContacts)
 	{
 		std::cout << "Index is not in range" << std::endl;
