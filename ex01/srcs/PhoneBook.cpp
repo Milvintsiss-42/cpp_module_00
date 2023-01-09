@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 21:49:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/18 06:02:00 by ple-stra         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:26:31 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,25 @@ static void promptField(std::string prompt, std::string &field)
 
 void PhoneBook::addContact()
 {
-	Contact *contact;
-	this->_contacts[this->_nbContacts % 8] = Contact();
+	std::string firstName;
+	std::string lastName;
+	std::string nickname;
+	std::string phoneNumber;
+	std::string darkestSecret;
 
-	contact = &this->_contacts[this->_nbContacts % 8];
-	promptField("First name: ", contact->firstName);
-	promptField("Last name: ", contact->lastName);
-	promptField("Nickname: ", contact->nickname);
-	promptField("Phone number: ", contact->phoneNumber);
-	promptField("Darkest secret: ", contact->darkestSecret);
+	promptField("First name: ", firstName);
+	promptField("Last name: ", lastName);
+	promptField("Nickname: ", nickname);
+	promptField("Phone number: ", phoneNumber);
+	promptField("Darkest secret: ", darkestSecret);
+
+	this->_contacts[this->_nbContacts % 8] = Contact(
+		firstName,
+		lastName,
+		nickname,
+		phoneNumber,
+		darkestSecret
+	);
 	this->_nbContacts++;
 }
 
@@ -73,11 +83,11 @@ static void displayPhoneBook(Contact contacts[8], int nbContacts)
 		contact = &contacts[i];
 		std::cout << "         " << i;
 		std::cout << "|";
-		displayLineElement(contact->firstName);
+		displayLineElement(contact->getFirstName());
 		std::cout << "|";
-		displayLineElement(contact->lastName);
+		displayLineElement(contact->getLastName());
 		std::cout << "|";
-		displayLineElement(contact->nickname);
+		displayLineElement(contact->getNickname());
 		std::cout << std::endl;
 		i++;
 	}
@@ -122,9 +132,9 @@ void PhoneBook::searchContact()
 		return;
 	}
 	contact = &this->_contacts[index];
-	std::cout << "First name: " << contact->firstName << std::endl;
-	std::cout << "Last name: " << contact->lastName << std::endl;
-	std::cout << "Nickname: " << contact->nickname << std::endl;
-	std::cout << "Phone number: " << contact->phoneNumber << std::endl;
-	std::cout << "Darkest secret: " << contact->darkestSecret << std::endl;
+	std::cout << "First name: " << contact->getFirstName() << std::endl;
+	std::cout << "Last name: " << contact->getLastName() << std::endl;
+	std::cout << "Nickname: " << contact->getNickname() << std::endl;
+	std::cout << "Phone number: " << contact->getPhoneNumber() << std::endl;
+	std::cout << "Darkest secret: " << contact->getDarkestSecret() << std::endl;
 }
